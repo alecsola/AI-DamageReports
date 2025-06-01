@@ -1,1 +1,0 @@
-license_plate = 'N29-KTV-7'
