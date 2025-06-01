@@ -1,6 +1,7 @@
 import streamlit as st
 from langchain_community.llms import Ollama
 import time
+import os
 
 st.title("📝 Accident Report Intake (Offline, Ollama)")
 
@@ -40,16 +41,15 @@ with st.form("accident_form"):
     submitted = st.form_submit_button("Save Report")
 
     if submitted:
-        # Save to file
+        output_dir = "../Ollama Model Remaining Fields"  # or any directory you prefer
+        os.makedirs(output_dir, exist_ok=True)  # ensure the folder exists
+
         timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
         filename = f"accident_report_{timestamp}.txt"
-        with open(filename, "w", encoding="utf-8") as f:
+        file_path = os.path.join(output_dir, filename)
+
+        with open(file_path, "w", encoding="utf-8") as f:
             for key, value in report_data.items():
                 f.write(f"{key}: {value}\n")
 
-        st.success(f"✅ Report saved to `{filename}`")
-
-        # Optional preview
-        st.markdown("### ✅ Summary of Saved Data:")
-        for key, value in report_data.items():
-            st.write(f"**{key}**: {value}")
+        st.success(f"✅ Report saved to `{file_path}`")
