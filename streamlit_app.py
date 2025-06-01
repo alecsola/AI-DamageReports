@@ -41,7 +41,7 @@ with st.form("accident_form"):
     submitted = st.form_submit_button("Save Report")
 
     if submitted:
-        output_dir = "../Ollama Model Remaining Fields"  # or any directory you prefer
+        output_dir = "../"  # or any directory you prefer
         os.makedirs(output_dir, exist_ok=True)  # ensure the folder exists
 
         timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
