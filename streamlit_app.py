@@ -3,7 +3,7 @@ from langchain_community.llms import Ollama
 import time
 import os
 
-st.title("📝 Accident Report Intake (Offline, Ollama)")
+st.title("📝 Accident Report Intake")
 
 llm = Ollama(model="mistral")  # or "llama3" if preferred
 
@@ -41,7 +41,7 @@ with st.form("accident_form"):
     submitted = st.form_submit_button("Save Report")
 
     if submitted:
-        output_dir = "../"  # or any directory you prefer
+        output_dir = "../Text Extraction"  # or any directory you prefer
         os.makedirs(output_dir, exist_ok=True)  # ensure the folder exists
 
         timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
